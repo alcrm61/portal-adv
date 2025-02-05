@@ -1,0 +1,129 @@
+<html lang="pt-BR">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Portal Jurídico - Perfil do Cliente
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+ </head>
+ <body class="font-roboto bg-gray-100">
+  <!-- Header -->
+  <header class="bg-blue-800 text-white p-4 flex justify-between items-center">
+   <h1 class="text-2xl font-bold">
+    Portal Jurídico
+   </h1>
+   <button class="bg-red-500 px-4 py-2 rounded hover:bg-red-700">
+    Logout
+   </button>
+  </header>
+  <!-- Main Content -->
+  <main class="p-6">
+   <!-- Profile Section -->
+   <section class="mb-6">
+    <h2 class="text-xl font-semibold mb-4">
+     Perfil do Cliente
+    </h2>
+    <div class="bg-white p-4 rounded shadow-md">
+     <!-- Profile Picture -->
+     <div class="mb-6 flex items-center">
+      <img alt="Foto de perfil do usuário" class="w-24 h-24 rounded-full mr-4" height="100" src="https://storage.googleapis.com/a1aa/image/iPa3x2225EfBKD5i-UOWuNYdWezuOsD8rDdXCS26ARE.jpg" width="100"/>
+      <div>
+       <button class="bg-blue-800 text-white px-4 py-2 rounded hover:bg-blue-900 mb-2">
+        Alterar Foto
+       </button>
+       <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700">
+        Remover Foto
+       </button>
+      </div>
+     </div>
+     <!-- User Information -->
+     <div class="mb-6">
+      <h3 class="text-lg font-semibold mb-2">
+       Informações do Usuário
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+       <div>
+        <label class="block text-sm font-medium text-gray-700" for="name">
+         Nome
+        </label>
+        <input class="mt-1 p-2 border rounded w-full" id="name" type="text" value="Nome do Cliente"/>
+       </div>
+       <div>
+        <label class="block text-sm font-medium text-gray-700" for="email">
+         E-mail
+        </label>
+        <input class="mt-1 p-2 border rounded w-full" id="email" type="email" value="cliente@exemplo.com"/>
+       </div>
+       <div>
+        <label class="block text-sm font-medium text-gray-700" for="phone">
+         Telefone
+        </label>
+        <input class="mt-1 p-2 border rounded w-full" id="phone" type="tel" value="(11) 1234-5678"/>
+       </div>
+       <div>
+        <label class="block text-sm font-medium text-gray-700" for="dob">
+         Data de Nascimento
+        </label>
+        <input class="mt-1 p-2 border rounded w-full" id="dob" type="date" value="1980-01-01"/>
+       </div>
+       <div class="md:col-span-2">
+        <label class="block text-sm font-medium text-gray-700" for="bio">
+         Biografia
+        </label>
+        <textarea class="mt-1 p-2 border rounded w-full" id="bio" rows="3">Biografia do cliente...</textarea>
+       </div>
+      </div>
+     </div>
+     <!-- Account Settings -->
+     <div class="mb-6">
+      <h3 class="text-lg font-semibold mb-2">
+       Configurações de Conta
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+       <div>
+        <label class="block text-sm font-medium text-gray-700" for="password">
+         Alterar Senha
+        </label>
+        <input class="mt-1 p-2 border rounded w-full" id="password" type="password"/>
+       </div>
+       <div>
+        
+       </div>
+       <div>
+        
+        <label class="block text-sm font-medium text-gray-700" for="language">
+         Preferências de Idioma
+        </label>
+        <select class="mt-1 p-2 border rounded w-full" id="language">
+         <option>
+          Português
+         </option>
+         <option>
+          Inglês
+         </option>
+         <option>
+          Espanhol
+         </option>
+        </select>
+       </div>
+      </div>
+     </div>
+     
+     <!-- Extra Actions -->
+     <div class="flex justify-between">
+      <button class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700">
+       Salvar Alterações
+      </button>
+      <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700">
+       Excluir Conta
+      </button>
+     </div>
+    </div>
+   </section>
+  </main>
+ </body>
+</html>
