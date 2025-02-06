@@ -3,7 +3,7 @@ let totalCases = 0;
 let totalDeadlines = 0;
 let totalTasks = 0;
 let totalClients = 0;
-let totalPrazos = 0;
+
 let totalAudiencias = 0;
 function openModal() {
     document.getElementById('taskModal').classList.remove('hidden');
@@ -108,24 +108,54 @@ document.getElementById('closeUploadModal').addEventListener('click', closeUploa
 // Submeter o formulário de upload de documento
 document.getElementById('uploadDocumentForm').addEventListener('submit', (event) => {
     event.preventDefault();
-    const fileInput = document.getElementById('uploadFile');
+    
+    const documentName = document.getElementById('documentName').value;
+    const fileInput = document.getElementById('documentFile');
     const file = fileInput.files[0];
 
     if (file) {
-        const documentList = document.getElementById('documents-list');
-        const newDoc = document.createElement('li');
-        newDoc.textContent = file.name;
-        documentList.appendChild(newDoc);
+        const documentsBody = document.getElementById('documentsBody');
+        const newRow = documentsBody.insertRow();
+
+        const nameCell = newRow.insertCell(0);
+        const dateCell = newRow.insertCell(1);
+        const actionsCell = newRow.insertCell(2); // Corrigido aqui
+
+        nameCell.textContent = documentName;
+        dateCell.textContent = new Date().toLocaleDateString();
+
+        const viewButton = document.createElement('button');
+        viewButton.textContent = 'Visualizar';
+        viewButton.className = 'text-blue-500 hover:text-blue-700';
+        viewButton.onclick = () => {
+            alert(`Visualizando: ${documentName}`);
+        };
+
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Excluir';
+        deleteButton.className = 'ml-2 text-red-500 hover:text-red-700';
+        deleteButton.onclick = () => {
+            if (confirm(`Tem certeza que deseja excluir ${documentName}?`)) {
+                documentsBody.deleteRow(newRow.rowIndex - 1);
+            }
+        };
+
+        actionsCell.appendChild(viewButton);
+        actionsCell.appendChild(deleteButton);
     } else {
         alert("Nenhum arquivo selecionado.");
- }
+    }
 
     closeUploadModal();
+    document.getElementById('uploadDocumentForm').reset();
 });
+
 
 // -------------------- FULLCALENDAR -------------------- //
 
-// Função para abrir e fechar modal de eventos
+
+
+// Função para abrir e fechar o modal de eventos
 function openEventModal() {
     document.getElementById("event-modal").classList.remove("hidden");
 }
@@ -134,42 +164,38 @@ function closeEventModal() {
     document.getElementById("event-modal").classList.add("hidden");
 }
 
-// Adicionar evento ao calendário e à lista de prazos
-function addEventToCalendar(title, date) {
-    if (title && date) {
-        calendar.addEvent({ title, start: date });
-
-        const deadlinesList = document.getElementById("deadlines-list");
-        const newDeadline = document.createElement("li");
-        newDeadline.textContent = `${title} - ${new Date(date).toLocaleDateString("pt-BR")}`;
-        deadlinesList.appendChild(newDeadline);
-
-        totalDeadlines++;
-        document.getElementById("total-prazos-count").textContent = totalDeadlines;
-
-        closeEventModal();
-        document.getElementById("event-title").value = "";
-        document.getElementById("event-date").value = "";
-    } else {
-        alert("Preencha todos os campos.");
-    }
-}
-
-// Função para adicionar um evento ao calendário
+// Função para adicionar evento ao calendário e atualizar tabela e contador
 function addCalendarEvent() {
     const title = document.getElementById('event-title').value;
     const date = document.getElementById('event-date').value;
 
     if (title && date) {
+        // Localiza o tbody da tabela
         const audienciasList = document.getElementById('audiencias-list');
-        const audienciaItem = document.createElement('li');
-        audienciaItem.className = 'text-gray-700';
-        audienciaItem.textContent = `${date} - ${title}`;
-        audienciasList.appendChild(audienciaItem);
 
-        totalAudiencias++;
-        document.getElementById('total-prazos-count').textContent = totalAudiencias;
+        // Cria uma nova linha (tr)
+        const row = document.createElement('tr');
 
+        // Cria a célula para a data
+        const dateCell = document.createElement('td');
+        dateCell.className = 'border px-4 py-2 text-gray-700';
+        dateCell.textContent = new Date(date).toLocaleDateString('pt-BR'); // Formata a data
+        row.appendChild(dateCell);
+
+        // Cria a célula para o título do evento
+        const titleCell = document.createElement('td');
+        titleCell.className = 'border px-4 py-2 text-gray-700';
+        titleCell.textContent = title;
+        row.appendChild(titleCell);
+
+        // Adiciona a nova linha ao tbody da tabela
+        audienciasList.appendChild(row);
+
+        // Atualiza o contador de prazos no dashboard (corrigindo para o ID correto)
+        totalDeadlines++;
+        document.getElementById("total-prazos-count").textContent = totalDeadlines;
+
+        // Fecha o modal e limpa os campos
         closeEventModal();
         document.getElementById('event-title').value = '';
         document.getElementById('event-date').value = '';
@@ -177,6 +203,8 @@ function addCalendarEvent() {
         alert('Por favor, preencha todos os campos.');
     }
 }
+
+
 
 // -------------------- FUNÇÕES GERAIS -------------------- //
 
