@@ -7,14 +7,8 @@
   </script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
-  <style>
-   body {
-            font-family: 'Roboto', sans-serif;
-        }
-    ul{
-      display: none;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
+
  </head>
  <body class="bg-gray-100">
   <div class="min-h-screen flex flex-col">
@@ -255,68 +249,56 @@
   </div>
 </div>
     <!-- Documentos Section -->
-  <div class="bg-white shadow-md rounded-lg p-6 mb-6" id="documentos">
-      <div class="flex justify-between items-center mb-4">
-        <h2 class="text-2xl font-semibold text-gray-900">Documentos</h2>
-        <div class="flex items-center">
-          
+<div class="bg-white shadow-md rounded-lg p-6 mb-6" id="documentos">
+  <div class="flex justify-between items-center mb-4">
+      <h2 class="text-2xl font-semibold text-gray-900">Documentos</h2>
+      <div class="flex items-center">
           <button id="uploadDocumentBtn" class="ml-4 bg-indigo-500 text-white px-4 py-2 rounded-md">
-            Upload
+              Upload
           </button>
-        </div>
       </div>
-      <div class="overflow-x-auto">
-        <table class="min-w-full bg-white">
+  </div>
+  <div class="overflow-x-auto">
+      <table class="min-w-full bg-white" id="documentsTable">
           <thead>
-            <tr>
-              <th class="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Nome do Documento
-              </th>
-              <th class="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Data de Upload
-              </th>
-              <th class="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Ações
-              </th>
-            </tr>
+              <tr>
+                  <th class="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Nome do Documento
+                  </th>
+                  <th class="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Data de Upload
+                  </th>
+                  <th class="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Ações
+                  </th>
+              </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td class="py-2 px-4 border-b border-gray-200">Contrato_Cliente_A.pdf</td>
-              <td class="py-2 px-4 border-b border-gray-200">01/10/2023</td>
-              <td class="py-2 px-4 border-b border-gray-200">
-                <button class="text-blue-500 hover:text-blue-700">Visualizar</button>
-                <button class="ml-2 text-red-500 hover:text-red-700">Excluir</button>
-              </td>
-            </tr>
-            <tr>
-              <td class="py-2 px-4 border-b border-gray-200">Petição_Inicial_B.docx</td>
-              <td class="py-2 px-4 border-b border-gray-200">15/09/2023</td>
-              <td class="py-2 px-4 border-b border-gray-200">
-                <button class="text-blue-500 hover:text-blue-700">Visualizar</button>
-                <button class="ml-2 text-red-500 hover:text-red-700">Excluir</button>
-              </td>
-            </tr>
-            <tr>
-              <td class="py-2 px-4 border-b border-gray-200">Relatório_Caso_C.pdf</td>
-              <td class="py-2 px-4 border-b border-gray-200">20/08/2023</td>
-              <td class="py-2 px-4 border-b border-gray-200">
-                <button class="text-blue-500 hover:text-blue-700">Visualizar</button>
-                <button class="ml-2 text-red-500 hover:text-red-700">Excluir</button>
-              </td>
-            </tr>
+          <tbody id="documentsBody">
+              <!-- Os documentos serão adicionados aqui -->
           </tbody>
-        </table>
-      </div>
-    </div>
+      </table>
+  </div>
+</div>
 
         <!-- Calendário -->
         <div id="calendario" class="bg-white shadow-md rounded-lg p-6 mb-6">
           <div id="calendar-section" class=" p-6 rounded-lg">
               <h3 class="text-xl font-bold text-gray-90 mb-4">Próximos Prazos</h3>
               <div id="calendar"></div>
-              <ul id="audiencias-list" class="mt-4"></ul>
-              <button class="bg-indigo-500 text-white px-4 py-2 rounded-md" onclick="openEventModal()">Adicionar Audincia</button>
+              <!-- Tabela para exibir os prazos -->
+        <table class="min-w-full bg-white border border-gray-300 mt-4">
+            <thead>
+                <tr>
+                    <th class="border px-4 py-2">Data</th>
+                    <th class="border px-4 py-2">Título do Evento</th>
+                </tr>
+            </thead>
+            <tbody id="audiencias-list">
+                <!-- Os eventos serão adicionados aqui -->
+            </tbody>
+        </table>
+        
+        <button class="bg-indigo-500 text-white px-4 py-2 rounded-md" onclick="openEventModal()">Adicionar Audiência</button>
           </div>
       </div>
     
@@ -342,8 +324,60 @@
         </iframe>
       </div>
       
-      
+      <!-- Notificações Section -->
+      <div class="bg-white shadow-md rounded-lg p-6" id="notificacoes">
+        <h2 class="text-2xl font-semibold text-gray-900 mb-4">
+        Notificações
+        </h2>
+        <ul class="space-y-4">
+        <li class="bg-gray-50 p-4 rounded-md shadow-sm">
+          <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm font-medium text-gray-900">
+            Prazo para envio de documentos do Caso X
+            </p>
+            <p class="text-sm text-gray-500">
+            Vence em 2 dias
+            </p>
+          </div>
+          <button class="text-indigo-500 hover:text-indigo-700">
+            Ver Detalhes
+          </button>
+          </div>
+        </li>
+        <li class="bg-gray-50 p-4 rounded-md shadow-sm">
+          <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm font-medium text-gray-900">
+            Nova mensagem de Maria Oliveira
+            </p>
+            <p class="text-sm text-gray-500">
+            Recebida há 1 hora
+            </p>
+          </div>
+          <button class="text-indigo-500 hover:text-indigo-700">
+            Ver Mensagem
+          </button>
+          </div>
+        </li>
+        <li class="bg-gray-50 p-4 rounded-md shadow-sm">
+          <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm font-medium text-gray-900">
+            Audiência marcada para o Caso Y
+            </p>
+            <p class="text-sm text-gray-500">
+            Data: 10/10/2023
+            </p>
+          </div>
+          <button class="text-indigo-500 hover:text-indigo-700">
+            Ver Detalhes
+          </button>
+          </div>
+        </li>
+        </ul>
       </div>
+    </div>
    </main>
   </div>
 
@@ -405,28 +439,26 @@
     </div>
   </div>
   <!-- Tabela de Clientes -->
-
-  <!-- Upload Document Modal -->
+<!-- Upload Document Modal -->
 <div id="uploadDocumentModal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden">
-    <div class="bg-white p-6 rounded shadow-md w-96">
+  <div class="bg-white p-6 rounded shadow-md w-96">
       <h2 class="text-xl font-bold mb-4">Upload de Documento</h2>
       <form id="uploadDocumentForm">
-        <div class="mb-4">
-          <label for="documentName" class="block text-sm font-medium text-gray-700">Nome do Documento</label>
-          <input type="text" id="documentName" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
-        </div>
-        <div class="mb-4">
-          <label for="documentFile" class="block text-sm font-medium text-gray-700">Arquivo</label>
-          <input type="file" id="documentFile" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
-        </div>
-        <div class="flex justify-end">
-          <button type="button" id="closeUploadModal" class="bg-gray-500 text-white py-2 px-4 rounded mr-2">Cancelar</button>
-          <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded">Upload</button>
-        </div>
+          <div class="mb-4">
+              <label for="documentName" class="block text-sm font-medium text-gray-700">Nome do Documento</label>
+              <input type="text" id="documentName" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+          </div>
+          <div class="mb-4">
+              <label for="documentFile" class="block text-sm font-medium text-gray-700">Arquivo</label>
+              <input type="file" id="documentFile" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+          </div>
+          <div class="flex justify-end">
+              <button type="button" id="closeUploadModal" class="bg-gray-500 text-white py-2 px-4 rounded mr-2">Cancelar</button>
+              <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded">Upload</button>
+          </div>
       </form>
-    </div>
   </div>
-
+</div>
   
   <!-- Footer -->
   <footer class="bg-gray-800 text-white text-center py-2">
@@ -436,4 +468,4 @@
     
 <script src="script.js"></script>
  </body>
-</html>
+</html>         
