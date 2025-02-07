@@ -116,7 +116,8 @@
             </div>
         </div>
     </div>
-    <div id="tarefas-pendentes" class="bg-white shadow-md rounded-lg p-4">
+    <!--TAREFAS PENDENTES-->
+<div id="tarefas-pendentes" class="bg-white shadow-md rounded-lg p-4">
         <div class="flex items-center">
             <div class="flex-shrink-0">
                 <i class="fas fa-check-circle text-green-500 text-3xl"></i>
@@ -139,7 +140,7 @@
             </div>
         </div>
     </div>
-  </div>
+</div>
   <!-- ------------------conteúdo principal--------------------- -->
       <!-- Casos Section -->
       <div id="cases-section" class="bg-white shadow-md rounded-lg p-6 mb-6">
@@ -202,18 +203,25 @@
           <h2 class="text-xl font-semibold">Tarefas Pendentes</h2>
           <button class="bg-blue-500 text-white px-4 py-2 rounded-lg" onclick="openModal()">Adicionar Tarefa</button>
       </div>
-      <table class="w-full text-left" id="taskTable">
-          <thead>
-              <tr>
-                  <th class="border-b-2 p-2">NOME DA TAREFA</th>
-                  <th class="border-b-2 p-2">STATUS</th>
-                  <th class="border-b-2 p-2">PRAZO DE VENCIMENTO</th>
-                  <th class="border-b-2 p-2">AÇÕES</th>
-              </tr>
-          </thead>
-          <tbody id="taskList">
-              <!-- As tarefas serão adicionadas aqui -->
-          </tbody>
+      <table class="min-w-full bg-white">
+        <thead>
+          <tr>
+            <th class="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Nome da tarefa
+            </th>
+            <th class="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              status
+            </th>
+            <th class="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              prazo
+            </th>
+            <th class="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              ação
+            </th>
+          </tr>
+        </thead>
+        <tbody id="taskList">
+        </tbody>
       </table>
   </div>
 
