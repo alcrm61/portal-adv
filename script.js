@@ -1,7 +1,6 @@
 // -------------------- CONTADORES -------------------- //
 let totalCases = 0;
 let totalDeadlines = 0;
-let totalTasks = 0;
 let totalClients = 0;
 
 let totalAudiencias = 0;
@@ -92,6 +91,8 @@ document.getElementById('addClientForm').addEventListener('submit', (e) => {
 });
 // -------------------- DOCUMENTOS -------------------- //
 
+// -------------------- DOCUMENTOS -------------------- //
+
 // Função para abrir e fechar modal de upload de documento
 function openUploadModal() {
     document.getElementById('uploadDocumentModal').classList.remove('hidden');
@@ -119,23 +120,29 @@ document.getElementById('uploadDocumentForm').addEventListener('submit', (event)
 
         const nameCell = newRow.insertCell(0);
         const dateCell = newRow.insertCell(1);
-        const actionsCell = newRow.insertCell(2); // Corrigido aqui
+        const actionsCell = newRow.insertCell(2);
 
         nameCell.textContent = documentName;
         dateCell.textContent = new Date().toLocaleDateString();
 
-        const viewButton = document.createElement('button');
+        // Criar um URL temporário para o arquivo
+        const fileURL = URL.createObjectURL(file);
+
+        // Criar botão de visualizar (que fará o download)
+        const viewButton = document.createElement('a');
         viewButton.textContent = 'Visualizar';
         viewButton.className = 'text-blue-500 hover:text-blue-700';
-        viewButton.onclick = () => {
-            alert(`Visualizando: ${documentName}`);
-        };
+        viewButton.href = fileURL; // Define o link para o arquivo
+        viewButton.download = documentName; // Define o nome do arquivo no download
+        viewButton.style.cursor = 'pointer';
 
+        // Criar botão de excluir
         const deleteButton = document.createElement('button');
         deleteButton.textContent = 'Excluir';
         deleteButton.className = 'ml-2 text-red-500 hover:text-red-700';
         deleteButton.onclick = () => {
             if (confirm(`Tem certeza que deseja excluir ${documentName}?`)) {
+                URL.revokeObjectURL(fileURL); // Libera o espaço na memória
                 documentsBody.deleteRow(newRow.rowIndex - 1);
             }
         };
@@ -221,15 +228,102 @@ function addDeadline() {
     }
 }
 
-// Adicionar tarefas
-function addTask() {
-    const newTask = prompt("Insira a nova tarefa:");
-    if (newTask) {
-        totalTasks++;
-        const taskList = document.getElementById('tasks-list');
-        const newListItem = document.createElement('li');
-        newListItem.textContent = newTask;
-        taskList.appendChild(newListItem);
-        document.getElementById('total-tarefas-count').textContent = totalTasks;
-    }
+// Adicionar tarefa
+let totalTasks = 0;
+
+document.addEventListener("DOMContentLoaded", loadTasks);
+
+function openModal() {
+    document.getElementById('taskModal').classList.remove('hidden');
+}
+
+function closeModal() {
+    document.getElementById('taskModal').classList.add('hidden');
+    document.getElementById('taskForm').reset();
+}
+
+function handleSubmit(event) {
+    event.preventDefault();
+
+    const taskName = document.getElementById('taskName').value;
+    const taskStatus = document.getElementById('taskStatus').value;
+    const taskDeadline = document.getElementById('taskDeadline').value;
+
+    const task = { taskName, taskStatus, taskDeadline };
+
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    tasks.push(task);
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+
+    addTaskToTable(task);
+    closeModal();
+}
+
+function addTaskToTable(task) {
+    const taskList = document.getElementById('taskList');
+    const newRow = document.createElement('tr');
+
+    newRow.innerHTML = `
+        <td class="border-b p-2">${task.taskName}</td>
+        <td class="border-b p-2">${task.taskStatus}</td>
+        <td class="border-b p-2">${task.taskDeadline}</td>
+        <td class="border-b p-2 flex flex-wrap gap-2">
+            <button class="text-green-500" onclick="markAsDone(this)">✔</button>
+            <button class="text-blue-500" onclick="editTask(this)">✏️</button>
+            <button class="text-red-500" onclick="deleteTask(this)">🗑</button>
+        </td>
+    `;
+
+    taskList.appendChild(newRow);
+    totalTasks++;
+    updateTaskCount();
+}
+
+function markAsDone(button) {
+    const row = button.closest('tr');
+    row.cells[1].textContent = 'Concluído';
+    button.disabled = true;
+    saveCurrentTasks();
+}
+
+function editTask(button) {
+    const row = button.closest('tr');
+    document.getElementById('taskName').value = row.cells[0].textContent;
+    document.getElementById('taskStatus').value = row.cells[1].textContent;
+    document.getElementById('taskDeadline').value = row.cells[2].textContent;
+
+    openModal();
+    row.remove();
+    totalTasks--;
+    updateTaskCount();
+    saveCurrentTasks();
+}
+
+function deleteTask(button) {
+    const row = button.closest('tr');
+    row.remove();
+    totalTasks--;
+    updateTaskCount();
+    saveCurrentTasks();
+}
+
+function updateTaskCount() {
+    document.getElementById('total-tarefas-count').textContent = totalTasks;
+}
+
+function saveCurrentTasks() {
+    let tasks = [];
+    document.querySelectorAll("#taskList tr").forEach(row => {
+        tasks.push({
+            taskName: row.cells[0].textContent,
+            taskStatus: row.cells[1].textContent,
+            taskDeadline: row.cells[2].textContent
+        });
+    });
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+function loadTasks() {
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    tasks.forEach(addTaskToTable);
 }
