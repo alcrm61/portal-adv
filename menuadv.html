@@ -3,7 +3,6 @@
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>
-   <!--criação dos perfils!-->
    Portal Jurídico - Perfil do Cliente
   </title>
   <script src="https://cdn.tailwindcss.com">
@@ -13,34 +12,49 @@
  </head>
  <body class="font-roboto bg-gray-100">
   <!-- Header -->
-  <header class="bg-blue-800 text-white p-4 flex justify-between items-center">
-   <h1 class="text-2xl font-bold">
-    Portal Jurídico
-   </h1>
-   <button class="bg-red-500 px-4 py-2 rounded hover:bg-red-700">
-    Logout
-   </button>
+  <header class="class= bg-white shadow-md p-4 flex justify-between items-center">
+    <div class="flex-shrink-0">
+        <img alt="Logo do escritório de advocacia" class="h-8 w-8" height="40" src="https://storage.googleapis.com/a1aa/image/GjBW1hbKFAZhJNFH3HbqIs6CP0gNkhO2rOoUJfs6QxmSRkDKA.jpg" width="40"/>
+    </div>
   </header>
   <!-- Main Content -->
   <main class="p-6">
    <!-- Profile Section -->
    <section class="mb-6">
     <h2 class="text-xl font-semibold mb-4">
-     Perfil do Cliente
+     Perfil do Advogado
     </h2>
     <div class="bg-white p-4 rounded shadow-md">
      <!-- Profile Picture -->
-     <div class="mb-6 flex items-center">
-      <img alt="Foto de perfil do usuário" class="w-24 h-24 rounded-full mr-4" height="100" src="https://storage.googleapis.com/a1aa/image/iPa3x2225EfBKD5i-UOWuNYdWezuOsD8rDdXCS26ARE.jpg" width="100"/>
-      <div>
-       <button class="bg-blue-800 text-white px-4 py-2 rounded hover:bg-blue-900 mb-2">
-        Alterar Foto
-       </button>
-       <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700">
-        Remover Foto
-       </button>
-      </div>
-     </div>
+     <div class="mb-6 flex flex-col items-center sm:flex-row sm:items-center sm:justify-start">
+        <!-- Imagem de perfil -->
+        <img id="profile-pic-menu" 
+             alt="Foto de perfil do usuário" 
+             class="w-24 h-24 rounded-full mb-4 sm:mb-0 sm:mr-4 border-2 border-gray-300 shadow-lg" 
+             height="100" 
+             width="100"/>
+    
+        <!-- Botões de upload e remover -->
+        <div class="flex flex-col items-center sm:flex-row sm:gap-4">
+            <!-- Botão de upload -->
+            <label for="upload-pic" 
+                   class="bg-blue-800 text-white px-4 py-2 rounded hover:bg-blue-900 text-sm cursor-pointer shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                Alterar Foto
+            </label>
+            <input id="upload-pic" 
+                   type="file" 
+                   accept="image/*" 
+                   class="hidden" 
+                   onchange="updateProfilePic(event)"/>
+            
+            <!-- Botão de remover -->
+            <button onclick="removeProfilePic()" 
+                    class="mt-2 sm:mt-0 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700 text-sm shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                Remover Foto
+            </button>
+        </div>
+    </div>
+    
      <!-- User Information -->
      <div class="mb-6">
       <h3 class="text-lg font-semibold mb-2">
@@ -126,5 +140,40 @@
     </div>
    </section>
   </main>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const savedImage = localStorage.getItem("profileImage");
+        if (savedImage) {
+            document.getElementById("profile-pic-menu").src = savedImage;
+        } else {
+            // Caso não haja imagem salva, usa uma padrão
+            document.getElementById("profile-pic-menu").src = "https://storage.googleapis.com/a1aa/image/iPa3x2225EfBKD5i-UOWuNYdWezuOsD8rDdXCS26ARE.jpg";
+        }
+        
+    });
+        // Remove a imagem de perfil
+        function removeProfilePic() {
+        const profilePic = document.getElementById('profile-pic-menu');
+        profilePic.src = ''; // Limpa a imagem
+
+        // Remove do localStorage
+        localStorage.removeItem('profileImageMenu');
+
+        alert('Imagem de perfil removida!');
+    }
+
+    
+    function updateProfilePic(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                localStorage.setItem("profileImage", e.target.result);
+                document.getElementById("profile-pic-menu").src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+  </script>
  </body>
 </html>
