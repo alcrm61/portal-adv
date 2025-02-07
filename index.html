@@ -1,9 +1,10 @@
 <html>
  <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>
    Dashboard para Advogados
   </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <script src="https://cdn.tailwindcss.com">
   </script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
@@ -16,111 +17,129 @@
    <!-- Navbar -->
    <nav class="bg-white shadow-md">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-     <div class="flex justify-between h-16">
-      <div class="flex">
-       <div class="flex-shrink-0 flex items-center">
-        <img alt="Logo do escritório de advocacia" class="h-8 w-8" height="40" src="https://storage.googleapis.com/a1aa/image/GjBW1hbKFAZhJNFH3HbqIs6CP0gNkhO2rOoUJfs6QxmSRkDKA.jpg" width="40"/>
-       </div>
-       <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-        <a class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" href="#">
-         Visão Geral
-        </a>
-        <a class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" href="#casos">
-         Casos
-        </a>
-        <a class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" href="#clientes">
-         Clientes
-        </a>
-        <a class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" href="#documentos">
-         Documentos
-        </a>
-        <a class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" href="#calendario">
-         Calendário
-        </a>
-        <a class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" href="#notificacoes">
-         Notificações
-        </a>
-       </div>
-      </div>
-      <div class="hidden sm:ml-6 sm:flex sm:items-center">
-       <button class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-        <span class="sr-only">
-         Ver notificações
-        </span>
-        <i class="fas fa-bell">
-        </i>
-       </button>
-       <div class="ml-3 relative">
-        <div>
-          <a href="menuadv.html">
-            <button aria-expanded="false" aria-haspopup="true" class="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-              <img alt="Foto de perfil do usuário" class="h-8 w-8 rounded-full" height="40" src="https://storage.googleapis.com/a1aa/image/EN7fr4F5GxSsWyKLZsf0KiFIMHrSwSPvkQYfNcFGLUCNFROoA.jpg" width="40"/>
-            </button>
-          </a>
-         </button>
+        <div class="flex justify-between h-16">
+            <div class="flex items-center">
+                <div class="flex-shrink-0">
+                    <img alt="Logo do escritório de advocacia" class="h-8 w-8" height="40" src="https://storage.googleapis.com/a1aa/image/GjBW1hbKFAZhJNFH3HbqIs6CP0gNkhO2rOoUJfs6QxmSRkDKA.jpg" width="40"/>
+                </div>
+                <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                    <a class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" href="#">
+                        Visão Geral
+                    </a>
+                    <a class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" href="#casos">
+                        Casos
+                    </a>
+                    <a class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" href="#clientes">
+                        Clientes
+                    </a>
+                    <a class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" href="#documentos">
+                        Documentos
+                    </a>
+                    <a class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" href="#calendario">
+                        Calendário
+                    </a>
+                    <a class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" href="#notificacoes">
+                        Notificações
+                    </a>
+                </div>
+            </div>
+            <div class="flex items-center">
+              <div class="flex items-center">
+                <!-- Mobile: Imagem de perfil -->
+                <div class="sm:hidden">
+                    <a href="menuadv.html">
+                        <img id="profile-pic-mobile" 
+                             alt="Foto de perfil do usuário" 
+                             class="h-8 w-8 rounded-full" 
+                             height="40" 
+                             src="https://storage.googleapis.com/a1aa/image/EN7fr4F5GxSsWyKLZsf0KiFIMHrSwSPvkQYfNcFGLUCNFROoA.jpg" 
+                             width="40"/>
+                    </a>
+                </div>
+            
+                <!-- Desktop: Imagem de perfil e notificações -->
+                <div class="hidden sm:ml-6 sm:flex sm:items-center">
+                    <!-- Botão de notificações -->
+                    <button class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        <span class="sr-only">Ver notificações</span>
+                        <i class="fas fa-bell"></i>
+                    </button>
+            
+                    <!-- Imagem de perfil -->
+                    <div class="ml-3 relative">
+                        <div>
+                            <a href="menuadv.html">
+                                <button onclick="saveProfileImage()" 
+                                        aria-expanded="false" 
+                                        aria-haspopup="true" 
+                                        class="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    <img id="profile-pic-desktop" 
+                                         alt="Foto de perfil do usuário" 
+                                         class="h-8 w-8 rounded-full" 
+                                         height="40" 
+                                         src="https://storage.googleapis.com/a1aa/image/EN7fr4F5GxSsWyKLZsf0KiFIMHrSwSPvkQYfNcFGLUCNFROoA.jpg" 
+                                         width="40"/>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-       </div>
-      </div>
-     </div>
     </div>
-   </nav>
+</nav>
    <!-- ------------------ principal--------------------- -->
    <!-- Main Content -->
-<main class="flex-1 overflow-y-auto p-4 md:p-6">
-  <div class="max-w-7xl mx-auto">
-    <!-- Overview Section -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-6">
-        <!-- Casos Ativos -->
-        <div id="total-casos" class="bg-white shadow-md rounded-lg p-4 md:p-6 min-h-[100px]">
-            <div class="flex items-center">
-                <div class="flex-shrink-0">
-                    <i class="fas fa-briefcase text-indigo-500 text-4xl"></i>
-                </div>
-                <div class="ml-4">
-                    <h3 class="text-xl font-medium text-gray-900">Casos Ativos</h3>
-                    <p id="total-casos-count" class="text-3xl font-semibold text-gray-700">0</p>
-                </div>
+<main class="flex-1 overflow-y-auto p-6">
+    <div class="max-w-7xl mx-auto">
+     <!-- Overview Section -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+    <div id="total-casos" class="bg-white shadow-md rounded-lg p-4">
+        <div class="flex items-center">
+            <div class="flex-shrink-0">
+                <i class="fas fa-briefcase text-indigo-500 text-3xl"></i>
             </div>
-        </div>
-        <!-- Próximos Prazos -->
-        <div id="proximos-prazos" class="bg-white shadow-md rounded-lg p-4 md:p-6 min-h-[100px]">
-            <div class="flex items-center">
-                <div class="flex-shrink-0">
-                    <i class="fas fa-calendar-alt text-blue-500 text-4xl"></i>
-                </div>
-                <div class="ml-4">
-                    <h3 class="text-xl font-medium text-gray-900">Próximos Prazos</h3>
-                    <p id="total-prazos-count" class="text-3xl font-semibold text-gray-700">0</p>
-                </div>
-            </div>
-        </div>
-        <!-- Tarefas Pendentes -->
-        <div id="tarefas-pendentes" class="bg-white shadow-md rounded-lg p-4 md:p-6 min-h-[100px]">
-            <div class="flex items-center">
-                <div class="flex-shrink-0">
-                    <i class="fas fa-check-circle text-green-500 text-4xl"></i>
-                </div>
-                <div class="ml-4">
-                    <h3 class="text-xl font-medium text-gray-900">Tarefas Pendentes</h3>
-                    <p id="total-tarefas-count" class="text-3xl font-semibold text-gray-700">0</p>
-                </div>
-            </div>
-        </div>
-        <!-- Total de Clientes -->
-        <div id="total-clientes" class="bg-white shadow-md rounded-lg p-4 md:p-6 min-h-[100px]">
-            <div class="flex items-center">
-                <div class="flex-shrink-0">
-                    <i class="fas fa-users text-yellow-500 text-4xl"></i>
-                </div>
-                <div class="ml-4">
-                    <h3 class="text-xl font-medium text-gray-900">Total de Clientes</h3>
-                    <p id="total-clientes-count" class="text-3xl font-semibold text-gray-700">0</p>
-                    <div id="prazos-list" class="mt-4"></div>
-                </div>
+            <div class="ml-4">
+                <h3 class="text-lg font-medium text-gray-900">Casos Ativos</h3>
+                <p id="total-casos-count" class="text-2xl font-semibold text-gray-700" >0</p>
             </div>
         </div>
     </div>
-</div>
+    <div id="proximos-prazos" class="bg-white shadow-md rounded-lg p-4">
+        <div class="flex items-center">
+            <div class="flex-shrink-0">
+                <i class="fas fa-calendar-alt text-blue-500 text-3xl"></i>
+            </div>
+            <div class="ml-4">
+                <h3 class="text-lg font-medium text-gray-900">Próximos Prazos</h3>
+                <p class="text-2xl font-semibold text-gray-700" id="total-prazos-count">0</p>
+            </div>
+        </div>
+    </div>
+    <div id="tarefas-pendentes" class="bg-white shadow-md rounded-lg p-4">
+        <div class="flex items-center">
+            <div class="flex-shrink-0">
+                <i class="fas fa-check-circle text-green-500 text-3xl"></i>
+            </div>
+            <div class="ml-4">
+                <h3 class="text-lg font-medium text-gray-900">Tarefas Pendentes</h3>
+                <p class="text-2xl font-semibold text-gray-700" id="total-tarefas-count">0</p>
+            </div>
+        </div>
+    </div>
+    <div id="total-clientes" class="bg-white shadow-md rounded-lg p-4">
+        <div class="flex items-center">
+            <div class="flex-shrink-0">
+                <i class="fas fa-users text-yellow-500 text-3xl"></i>
+            </div>
+            <div class="ml-4">
+                <h3 class="text-lg font-medium text-gray-900">Total de Clientes</h3>
+                <p class="text-2xl font-semibold text-gray-700" id="total-clientes-count">0</p>
+                <div id="prazos-list" class="mt-4"></div>
+            </div>
+        </div>
+    </div>
+  </div>
   <!-- ------------------conteúdo principal--------------------- -->
       <!-- Casos Section -->
       <div id="cases-section" class="bg-white shadow-md rounded-lg p-6 mb-6">
@@ -304,60 +323,6 @@
         <iframe frameborder="0" height="600" scrolling="no" src="https://calendar.google.com/calendar/embed?src=your_calendar_id&amp;ctz=America%2FSao_Paulo" style="border: 0" width="100%">
         </iframe>
       </div>
-      
-      <!-- Notificações Section -->
-      <div class="bg-white shadow-md rounded-lg p-6" id="notificacoes">
-        <h2 class="text-2xl font-semibold text-gray-900 mb-4">
-        Notificações
-        </h2>
-        <ul class="space-y-4">
-        <li class="bg-gray-50 p-4 rounded-md shadow-sm">
-          <div class="flex items-center justify-between">
-          <div>
-            <p class="text-sm font-medium text-gray-900">
-            Prazo para envio de documentos do Caso X
-            </p>
-            <p class="text-sm text-gray-500">
-            Vence em 2 dias
-            </p>
-          </div>
-          <button class="text-indigo-500 hover:text-indigo-700">
-            Ver Detalhes
-          </button>
-          </div>
-        </li>
-        <li class="bg-gray-50 p-4 rounded-md shadow-sm">
-          <div class="flex items-center justify-between">
-          <div>
-            <p class="text-sm font-medium text-gray-900">
-            Nova mensagem de Maria Oliveira
-            </p>
-            <p class="text-sm text-gray-500">
-            Recebida há 1 hora
-            </p>
-          </div>
-          <button class="text-indigo-500 hover:text-indigo-700">
-            Ver Mensagem
-          </button>
-          </div>
-        </li>
-        <li class="bg-gray-50 p-4 rounded-md shadow-sm">
-          <div class="flex items-center justify-between">
-          <div>
-            <p class="text-sm font-medium text-gray-900">
-            Audiência marcada para o Caso Y
-            </p>
-            <p class="text-sm text-gray-500">
-            Data: 10/10/2023
-            </p>
-          </div>
-          <button class="text-indigo-500 hover:text-indigo-700">
-            Ver Detalhes
-          </button>
-          </div>
-        </li>
-        </ul>
-      </div>
     </div>
    </main>
   </div>
@@ -445,6 +410,62 @@
   <footer class="bg-gray-800 text-white text-center py-2">
     <p>&copy; 2025 Delmondes Maceió</p>
 </footer>
+<script>
+ // Atualiza a imagem de perfil no localStorage e na interface
+function updateProfileImage(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const imageUrl = e.target.result;
+
+            // Atualiza todas as imagens de perfil no site
+            updateAllProfileImages(imageUrl);
+
+            // Salva no localStorage
+            localStorage.setItem('profileImage', imageUrl);
+
+            alert('Imagem de perfil atualizada com sucesso!');
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+// Remove a imagem de perfil
+function removeProfileImage() {
+    // Remove a imagem do localStorage
+    localStorage.removeItem('profileImage');
+
+    // Atualiza todas as imagens para o estado vazio ou padrão
+    updateAllProfileImages('');
+
+    alert('Imagem de perfil removida!');
+}
+
+// Atualiza todas as imagens de perfil (desktop, mobile, menuadv)
+function updateAllProfileImages(imageUrl) {
+    // Atualiza imagem no menu (menuadv.html)
+    const menuProfilePic = document.getElementById('profile-pic-menu');
+    if (menuProfilePic) {
+        menuProfilePic.src = imageUrl || 'default-profile.png'; // Imagem padrão, se vazia
+    }
+
+    // Atualiza imagem no index (desktop e mobile)
+    const desktopProfilePic = document.getElementById('profile-pic-desktop');
+    const mobileProfilePic = document.getElementById('profile-pic-mobile');
+    if (desktopProfilePic) {
+        desktopProfilePic.src = imageUrl || 'default-profile.png';
+    }
+    if (mobileProfilePic) {
+        mobileProfilePic.src = imageUrl || 'default-profile.png';
+    }
+}
+
+// Carrega a imagem de perfil ao abrir a página
+const savedProfileImage = localStorage.getItem('profileImage');
+updateAllProfileImages(savedProfileImage);
+
+</script>
 <script src="script.js"></script>
  </body>
 </html>         
