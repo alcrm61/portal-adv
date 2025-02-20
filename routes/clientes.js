@@ -49,5 +49,45 @@ router.get("/clientes/:id", (req, res) => {
   });
 });
 
+// Rota para atualizar um cliente pelo ID
+router.put("/clientes/:id", (req, res) => {
+  const { id } = req.params;
+  const { name, email, phone } = req.body;
+
+  if (!name || !email || !phone) {
+    return res.status(400).json({ error: "Todos os campos são obrigatórios" });
+  }
+
+  pool.query(
+    "UPDATE clientes SET name = ?, email = ?, phone = ? WHERE id = ?",
+    [name, email, phone, id],
+    (err, results) => {
+      if (err) {
+        console.error("Erro ao atualizar cliente:", err);
+        return res.status(500).json({ error: "Erro ao atualizar cliente" });
+      }
+      if (results.affectedRows === 0) {
+        return res.status(404).json({ error: "Cliente não encontrado" });
+      }
+      res.json({ message: "Cliente atualizado com sucesso" });
+    }
+  );
+});
+// Rota para excluir um cliente pelo ID
+router.delete("/clientes/:id", (req, res) => {
+  const { id } = req.params;
+
+  pool.query("DELETE FROM clientes WHERE id = ?", [id], (err, results) => {
+    if (err) {
+      console.error("Erro ao excluir cliente:", err);
+      return res.status(500).json({ error: "Erro ao excluir cliente" });
+    }
+    if (results.affectedRows === 0) {
+      return res.status(404).json({ error: "Cliente não encontrado" });
+    }
+    res.json({ message: "Cliente excluído com sucesso" });
+  });
+});
+
 
 module.exports = router;
